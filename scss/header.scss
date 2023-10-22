@@ -1,0 +1,156 @@
+//====================================================================================================
+
+
+.header {
+	padding: 33.5px 0;
+	position: fixed;
+	width: 100%;
+	background: rgba(16, 16, 29, 0.90);
+	z-index: 2;
+	// .header__container
+
+
+	// .header__logo
+
+	&__logo {
+		color: $mainWhiteColor;
+		font-family: 'Raleway';
+		font-size: clamp(rem(24), 2.916vw, rem(28));
+		font-style: normal;
+		font-weight: 800;
+		line-height: normal;
+		text-transform: uppercase;
+		& span {
+			color: $mainBluecolor;
+			font-family: 'Raleway';
+			font-size: clamp(rem(24), 2.916vw, rem(28));
+			font-style: normal;
+			font-weight: 800;
+			line-height: normal;
+			text-transform: uppercase;
+		}
+	}
+
+
+}
+.header-block {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.menu {
+
+
+	// .menu__body
+
+	&__body {
+		@media(max-width:  $mobile) {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: -100%;
+			overflow: auto;
+			background-color: rgba(16, 16, 29, .95);
+			padding: rem(100) rem(15) rem(50) rem(15);
+			transition: left 0.5s ease 0s;
+			z-index: 1;
+			.menu-open & {
+				left: 0;
+				&::before {
+					left: 0;
+				}
+			}
+		}
+	}
+
+	// .menu__list
+
+	&__list {
+		display: flex;
+	gap: 60px;
+	@media(max-width: $mobile) {
+		flex-direction: column;
+	}
+	}
+
+
+
+	&__link {
+		color: $mainWhiteColor;
+		font-family: 'Raleway';
+		font-size: rem(13);
+		font-weight: 600;
+		line-height: normal;
+		text-transform: uppercase;
+		transition: all ease .3s;
+		@media (any-hover: hover){
+			&:hover{
+				color: $mainBluecolor;
+			}
+		}
+		@media(max-width: $mobile) {
+			font-size: rem(16);
+		}
+	}
+}
+
+.active {
+	color: $mainBluecolor;
+}
+
+
+//====================================================================================================
+
+//Burger
+
+.icon-menu {
+	display: none;
+	@media (max-width: $mobile) {
+		display: block;
+		position: relative;
+		width: rem(26);
+		height: rem(16);
+		z-index: 5;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: rem(2);
+			background-color: $mainWhiteColor;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - rem(1));
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before,
+			&::after {
+			}
+			&::before {
+				top: calc(50% - rem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - rem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
+
